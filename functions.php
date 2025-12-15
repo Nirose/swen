@@ -6,7 +6,7 @@ $subtime = 1717;
 
 function getUrl($base)
 {
-    $agent = ['Twitterbot/1.0','facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)'];
+    $agent = ['Twitterbot/1.0','facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)','Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)','Mozilla/5.0 (compatible; Google-Extended/1.0; +https://www.google.com/)','Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36'];
     $ch = curl_init($base);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_HEADER, false);
@@ -18,7 +18,7 @@ function getUrl($base)
     curl_setopt($ch, CURLOPT_VERBOSE, 1);
     curl_setopt($ch, CURLOPT_USERAGENT, getUserAgent($agent));
     $str = curl_exec($ch);
-    
+
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $try = 0;
     while ((int)$httpCode == 429 && $try < 5) {
@@ -112,7 +112,7 @@ function parseStore($subs)
 }
 
 #
-# 2nd level of Feed parsing, 
+# 2nd level of Feed parsing,
 # When $test is true, it will output the SimpleXMLElement object
 # When $json is true, json encode/decode is used after SimpleXMLElement object. (slower in limited testing)
 # Parses XML File for feeds
