@@ -6,7 +6,7 @@ $subtime = 1717;
 
 function getUrl($base)
 {
-    $agent = ['Twitterbot/1.0','facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)','Mozilla/5.0 (iPhone; CPU iPhone OS 17_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1 (Applebot/0.1; +http://www.apple.com/go/applebot)'];
+    $agent = ['Twitterbot/1.0','facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)'];
     $ch = curl_init($base);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_HEADER, false);
@@ -21,8 +21,8 @@ function getUrl($base)
 
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $try = 0;
-    while ((int)$httpCode == 429 && $try < 5) {
-        sleep(5);
+    while ((int)$httpCode != 200 && $try < 10) {
+        sleep(10);
         $str = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $try++;
