@@ -6,7 +6,7 @@ $subtime = 1717;
 
 function getUrl($base)
 {
-    $agent = ['Twitterbot/1.0','facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)'];
+    $agent = ['Twitterbot/1.0'];
     $ch = curl_init($base);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_HEADER, false);
@@ -21,7 +21,7 @@ function getUrl($base)
 
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $try = 0;
-    while ((int)$httpCode != 200 && $try < 10) {
+    while ((int)$httpCode != 200 && $try < 5) {
         sleep(10);
         $str = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
