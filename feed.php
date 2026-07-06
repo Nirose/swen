@@ -20,12 +20,12 @@ elseif (isset($_GET['f']) && isset($_GET['n'])) {
     # Parse Reddit subs
     # Array with the list of subs to fetch
     #
-    $subs = ['technology','science','worldnews','todayilearned','programming','pcgaming','linux_gaming','nepal+technepal+pokhara+ioenepal','nepalsocial','apple','android','damnthatsinteresting','publicfreakout','oddlysatisfying','lifeprotips','interestingasfuck','nextfuckinglevel','privacy'];
+    $subs = ['technology','science','worldnews','todayilearned','programming','pcgaming','linux_gaming','linux','nepal+technepal+pokhara+ioenepal','nepalsocial','apple','android','damnthatsinteresting','publicfreakout','oddlysatisfying','lifeprotips','interestingasfuck','nextfuckinglevel','privacy'];
     parseReddit($subs);
 
     #
     # Parse RSS Feeds
-    # One per line 
+    # One per line
     #
     parseFeed('https://hnrss.org/frontpage', 'ycombinator');
     parseFeed('https://techcrunch.com/feed/', 'techcrunch');
